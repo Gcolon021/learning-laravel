@@ -4,15 +4,14 @@ use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', static function () {
-    $Jobs = Job::all();
-
-    dd($Jobs);
-//    return view('home');
+    return view('home');
 });
 
 Route::get('/jobs', static function () {
+    $JobsWithEmployer = Job::with('employer')->get();
+
     return view('jobs', [
-        'jobs' => Job::all(),
+        'jobs' => $JobsWithEmployer,
     ]);
 });
 
