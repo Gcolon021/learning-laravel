@@ -8,7 +8,7 @@ Route::get('/', static function () {
 });
 
 Route::get('/jobs', static function () {
-    $JobsWithEmployer = Job::with('employer')->get();
+    $JobsWithEmployer = Job::with('employer')->cursorPaginate(5);
 
     return view('jobs', [
         'jobs' => $JobsWithEmployer,
